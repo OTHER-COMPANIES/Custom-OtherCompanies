@@ -1,0 +1,25 @@
+SELECT * FROM AD_PrintFormat WHERE AD_PrintFormat_ID IN (3000232,3000231,3000234,3000233);
+UPDATE AD_PrintFormat SET AD_Client_ID = 1000000,AD_Org_ID = 0 WHERE AD_PrintFormat_ID IN (3000232,3000231,3000234,3000233);
+
+SELECT * FROM AD_PrintFormatItem WHERE AD_PrintFormat_ID IN(
+SELECT AD_PrintFormat_ID FROM AD_PrintFormat WHERE AD_PrintFormat_ID IN (3000232,3000231,3000234,3000233));
+
+UPDATE AD_PrintFormatItem SET AD_Client_ID = 1000000,AD_Org_ID = 0  WHERE AD_PrintFormat_ID IN(
+SELECT AD_PrintFormat_ID FROM AD_PrintFormat WHERE AD_PrintFormat_ID IN (3000232,3000231,3000234,3000233));
+
+
+
+
+SELECT * FROM AD_PrintFormatItem_Trl WHERE AD_PrintFormatItem_ID IN (
+SELECT AD_PrintFormatItem_ID FROM AD_PrintFormatItem WHERE AD_PrintFormat_ID IN(
+SELECT AD_PrintFormat_ID FROM AD_PrintFormat WHERE AD_PrintFormat_ID IN (3000232,3000231,3000234,3000233)));
+
+
+UPDATE AD_PrintFormatItem_Trl SET AD_Client_ID = 1000000,AD_Org_ID = 0  WHERE AD_PrintFormatItem_ID IN (
+SELECT AD_PrintFormatItem_ID FROM AD_PrintFormatItem WHERE AD_PrintFormat_ID IN(
+SELECT AD_PrintFormat_ID FROM AD_PrintFormat WHERE AD_PrintFormat_ID IN (3000232,3000231,3000234,3000233)));
+
+
+SELECT * FROM AD_Process WHERE AD_Process_ID=3000211;
+
+UPDATE AD_Process SET AD_ReportView_ID = null, AD_PrintFormat_ID = 3000231 WHERE AD_Process_ID=3000211;
